@@ -14,6 +14,10 @@ RUN apk upgrade --update \
     && mkdir /var/www/public \
     && rm -rf /var/cache/apk/*
 
+RUN wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
+    && rm dockerize-alpine-linux-amd64-v0.6.1.tar.gz
+
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY run.sh /usr/local/bin/run.sh
 COPY index.php /var/www/public/index.php
